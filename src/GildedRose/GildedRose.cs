@@ -25,6 +25,10 @@ namespace GildedRose
                 {
                     UpdateBackstagePasses(item);
                 }
+                else if (item.Name == AgedBrie)
+                {
+                    UpdateAgedBrie(item);
+                }
                 else
                 {
                     if (item.Name != AgedBrie && item.Name != BackstagePasses)
@@ -73,6 +77,16 @@ namespace GildedRose
             if (item.SellIn < 0)
             {
                 item.Quality = 0;
+            }
+        }
+
+        private static void UpdateAgedBrie(Item item)
+        {
+            IncreaseQuality(item);
+            item.SellIn--;
+            if (item.SellIn < 0)
+            {
+                IncreaseQuality(item);
             }
         }
         private static void UpdateDefaultItem(Item item)
