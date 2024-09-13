@@ -19,74 +19,74 @@ namespace GildedRoseKata
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var item in Items)
             {
-                if (Items[i].Name != AgedBrie && Items[i].Name != BackstagePasses)
+                if (item.Name != AgedBrie && item.Name != BackstagePasses)
                 {
-                    if (Items[i].Quality > 0)
+                    if (item.Quality > 0)
                     {
-                        if (Items[i].Name != Sulfuras)
+                        if (item.Name != Sulfuras)
                         {
-                            Items[i].Quality = Items[i].Quality - 1;
+                            item.Quality = item.Quality - 1;
                         }
                     }
                 }
                 else
                 {
-                    if (Items[i].Quality < MaxQuality)
+                    if (item.Quality < MaxQuality)
                     {
-                        Items[i].Quality = Items[i].Quality + 1;
+                        item.Quality = item.Quality + 1;
 
-                        if (Items[i].Name == BackstagePasses)
+                        if (item.Name == BackstagePasses)
                         {
-                            if (Items[i].SellIn < ThresholdInDaysOfFirstQualityIncrease)
+                            if (item.SellIn < ThresholdInDaysOfFirstQualityIncrease)
                             {
-                                if (Items[i].Quality < MaxQuality)
+                                if (item.Quality < MaxQuality)
                                 {
-                                    Items[i].Quality = Items[i].Quality + 1;
+                                    item.Quality = item.Quality + 1;
                                 }
                             }
 
-                            if (Items[i].SellIn < ThresholdInDaysOfSecondQualityIncrease)
+                            if (item.SellIn < ThresholdInDaysOfSecondQualityIncrease)
                             {
-                                if (Items[i].Quality < MaxQuality)
+                                if (item.Quality < MaxQuality)
                                 {
-                                    Items[i].Quality = Items[i].Quality + 1;
+                                    item.Quality = item.Quality + 1;
                                 }
                             }
                         }
                     }
                 }
 
-                if (Items[i].Name != Sulfuras)
+                if (item.Name != Sulfuras)
                 {
-                    Items[i].SellIn = Items[i].SellIn - 1;
+                    item.SellIn = item.SellIn - 1;
                 }
 
-                if (Items[i].SellIn < 0)
+                if (item.SellIn < 0)
                 {
-                    if (Items[i].Name != AgedBrie)
+                    if (item.Name != AgedBrie)
                     {
-                        if (Items[i].Name != BackstagePasses)
+                        if (item.Name != BackstagePasses)
                         {
-                            if (Items[i].Quality > 0)
+                            if (item.Quality > 0)
                             {
-                                if (Items[i].Name != Sulfuras)
+                                if (item.Name != Sulfuras)
                                 {
-                                    Items[i].Quality = Items[i].Quality - 1;
+                                    item.Quality = item.Quality - 1;
                                 }
                             }
                         }
                         else
                         {
-                            Items[i].Quality = 0;
+                            item.Quality = 0;
                         }
                     }
                     else
                     {
-                        if (Items[i].Quality < MaxQuality)
+                        if (item.Quality < MaxQuality)
                         {
-                            Items[i].Quality = Items[i].Quality + 1;
+                            item.Quality = item.Quality + 1;
                         }
                     }
                 }
