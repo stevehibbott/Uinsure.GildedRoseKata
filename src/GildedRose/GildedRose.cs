@@ -2,7 +2,7 @@
 
 namespace GildedRose
 {
-   public class GildedRose(IList<Item> Items)
+  public class GildedRose(IList<Item> Items)
     {
         private const string AgedBrie = "Aged Brie";
         private const string BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
@@ -29,15 +29,7 @@ namespace GildedRose
 
                         if (item.Name == BackstagePasses)
                         {
-                            if (item.SellIn < ThresholdInDaysOfFirstQualityIncrease)
-                            {
-                                IncreaseQuality(item);
-                            }
-
-                            if (item.SellIn < ThresholdInDaysOfSecondQualityIncrease)
-                            {
-                                IncreaseQuality(item);
-                            }
+                            IncreaseBackstagePassesQuality(item);
                         }
                     }
                 }
@@ -67,6 +59,20 @@ namespace GildedRose
                 }
             }
         }
+
+        private static void IncreaseBackstagePassesQuality(Item item)
+        {
+            if (item.SellIn < ThresholdInDaysOfFirstQualityIncrease)
+            {
+                IncreaseQuality(item);
+            }
+
+            if (item.SellIn < ThresholdInDaysOfSecondQualityIncrease)
+            {
+                IncreaseQuality(item);
+            }
+        }
+
         private static void IncreaseQuality(Item item)
         {
             if (item.Quality < MaxQuality)
