@@ -7,6 +7,9 @@ namespace GildedRoseKata
         private const string AgedBrie = "Aged Brie";
         private const string BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
         private const string Sulfuras = "Sulfuras, Hand of Ragnaros";
+        private const int MaxQuality = 50;
+        private const int ThresholdInDaysOfFirstQualityIncrease = 11;
+        private const int ThresholdInDaysOfSecondQualityIncrease = 6;
 
         IList<Item> Items;
         public GildedRose(IList<Item> Items)
@@ -30,23 +33,23 @@ namespace GildedRoseKata
                 }
                 else
                 {
-                    if (Items[i].Quality < 50)
+                    if (Items[i].Quality < MaxQuality)
                     {
                         Items[i].Quality = Items[i].Quality + 1;
 
                         if (Items[i].Name == BackstagePasses)
                         {
-                            if (Items[i].SellIn < 11)
+                            if (Items[i].SellIn < ThresholdInDaysOfFirstQualityIncrease)
                             {
-                                if (Items[i].Quality < 50)
+                                if (Items[i].Quality < MaxQuality)
                                 {
                                     Items[i].Quality = Items[i].Quality + 1;
                                 }
                             }
 
-                            if (Items[i].SellIn < 6)
+                            if (Items[i].SellIn < ThresholdInDaysOfSecondQualityIncrease)
                             {
-                                if (Items[i].Quality < 50)
+                                if (Items[i].Quality < MaxQuality)
                                 {
                                     Items[i].Quality = Items[i].Quality + 1;
                                 }
@@ -81,7 +84,7 @@ namespace GildedRoseKata
                     }
                     else
                     {
-                        if (Items[i].Quality < 50)
+                        if (Items[i].Quality < MaxQuality)
                         {
                             Items[i].Quality = Items[i].Quality + 1;
                         }
