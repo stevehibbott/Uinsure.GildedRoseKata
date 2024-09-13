@@ -28,7 +28,7 @@ namespace GildedRose
                 }
                 else if (item.Name == AgedBrie)
                 {
-                    UpdateAgedBrie(item);
+                    new AgedBrieItemStrategy().UpdateItem(item);
                 }
             }
         }
@@ -37,22 +37,12 @@ namespace GildedRose
         {
             IncreaseQuality(item);
             IncreaseBackstagePassesQuality(item);
-            
+
             item.SellIn--;
 
             if (item.SellIn < 0)
             {
                 item.Quality = 0;
-            }
-        }
-
-        private static void UpdateAgedBrie(Item item)
-        {
-            IncreaseQuality(item);
-            item.SellIn--;
-            if (item.SellIn < 0)
-            {
-                IncreaseQuality(item);
             }
         }
 
