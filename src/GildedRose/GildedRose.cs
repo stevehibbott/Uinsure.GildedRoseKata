@@ -21,6 +21,10 @@ namespace GildedRose
                 {
                     UpdateDefaultItem(item);
                 }
+                else if (item.Name == BackstagePasses)
+                {
+                    UpdateBackstagePasses(item);
+                }
                 else
                 {
                     if (item.Name != AgedBrie && item.Name != BackstagePasses)
@@ -29,15 +33,7 @@ namespace GildedRose
                     }
                     else
                     {
-                        if (item.Quality < MaxQuality)
-                        {
-                            item.Quality++;
-
-                            if (item.Name == BackstagePasses)
-                            {
-                                IncreaseBackstagePassesQuality(item);
-                            }
-                        }
+                        IncreaseQuality(item);
                     }
 
                     if (item.Name != Sulfuras)
@@ -67,6 +63,18 @@ namespace GildedRose
             }
         }
 
+        private static void UpdateBackstagePasses(Item item)
+        {
+            IncreaseQuality(item);
+            IncreaseBackstagePassesQuality(item);
+            
+            item.SellIn--;
+
+            if (item.SellIn < 0)
+            {
+                item.Quality = 0;
+            }
+        }
         private static void UpdateDefaultItem(Item item)
         {
             if (item.Quality > 0)
