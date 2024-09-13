@@ -37,18 +37,12 @@ namespace GildedRose
                         {
                             if (item.SellIn < ThresholdInDaysOfFirstQualityIncrease)
                             {
-                                if (item.Quality < MaxQuality)
-                                {
-                                    item.Quality++;
-                                }
+                                IncreaseQuality(item);
                             }
 
                             if (item.SellIn < ThresholdInDaysOfSecondQualityIncrease)
                             {
-                                if (item.Quality < MaxQuality)
-                                {
-                                    item.Quality++;
-                                }
+                                IncreaseQuality(item);
                             }
                         }
                     }
@@ -86,6 +80,13 @@ namespace GildedRose
                         }
                     }
                 }
+            }
+        }
+        private static void IncreaseQuality(Item item)
+        {
+            if (item.Quality < MaxQuality)
+            {
+                item.Quality++;
             }
         }
     }
