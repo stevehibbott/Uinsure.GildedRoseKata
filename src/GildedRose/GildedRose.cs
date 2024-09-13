@@ -2,7 +2,7 @@
 
 namespace GildedRose
 {
-    public class GildedRose(IList<Item> Items)
+   public class GildedRose(IList<Item> Items)
     {
         private const string AgedBrie = "Aged Brie";
         private const string BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
@@ -19,13 +19,7 @@ namespace GildedRose
             {
                 if (item.Name != AgedBrie && item.Name != BackstagePasses)
                 {
-                    if (item.Quality > 0)
-                    {
-                        if (item.Name != Sulfuras)
-                        {
-                            item.Quality--;
-                        }
-                    }
+                    DecreaseQuality(item);
                 }
                 else
                 {
@@ -59,13 +53,7 @@ namespace GildedRose
                     {
                         if (item.Name != BackstagePasses)
                         {
-                            if (item.Quality > 0)
-                            {
-                                if (item.Name != Sulfuras)
-                                {
-                                    item.Quality--;
-                                }
-                            }
+                            DecreaseQuality(item);
                         }
                         else
                         {
@@ -74,10 +62,7 @@ namespace GildedRose
                     }
                     else
                     {
-                        if (item.Quality < MaxQuality)
-                        {
-                            item.Quality++;
-                        }
+                        IncreaseQuality(item);
                     }
                 }
             }
@@ -87,6 +72,14 @@ namespace GildedRose
             if (item.Quality < MaxQuality)
             {
                 item.Quality++;
+            }
+        }
+
+        private static void DecreaseQuality(Item item)
+        {
+            if (item.Name != Sulfuras && item.Quality > 0)
+            {
+                item.Quality--;
             }
         }
     }
