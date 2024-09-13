@@ -2,7 +2,7 @@
 
 namespace GildedRose
 {
-  public class GildedRose(IList<Item> Items)
+    public class GildedRose(IList<Item> Items)
     {
         private const string AgedBrie = "Aged Brie";
         private const string BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
@@ -17,46 +17,68 @@ namespace GildedRose
         {
             foreach (var item in Items)
             {
-                if (item.Name != AgedBrie && item.Name != BackstagePasses)
+                if (item.Name != BackstagePasses && item.Name != Sulfuras & item.Name != AgedBrie)
                 {
-                    DecreaseQuality(item);
+                    UpdateDefaultItem(item);
                 }
                 else
                 {
-                    if (item.Quality < MaxQuality)
+                    if (item.Name != AgedBrie && item.Name != BackstagePasses)
                     {
-                        item.Quality++;
-
-                        if (item.Name == BackstagePasses)
-                        {
-                            IncreaseBackstagePassesQuality(item);
-                        }
-                    }
-                }
-
-                if (item.Name != Sulfuras)
-                {
-                    item.SellIn--;
-                }
-
-                if (item.SellIn < 0)
-                {
-                    if (item.Name != AgedBrie)
-                    {
-                        if (item.Name != BackstagePasses)
-                        {
-                            DecreaseQuality(item);
-                        }
-                        else
-                        {
-                            item.Quality = 0;
-                        }
+                        DecreaseQuality(item);
                     }
                     else
                     {
-                        IncreaseQuality(item);
+                        if (item.Quality < MaxQuality)
+                        {
+                            item.Quality++;
+
+                            if (item.Name == BackstagePasses)
+                            {
+                                IncreaseBackstagePassesQuality(item);
+                            }
+                        }
+                    }
+
+                    if (item.Name != Sulfuras)
+                    {
+                        item.SellIn--;
+                    }
+
+                    if (item.SellIn < 0)
+                    {
+                        if (item.Name != AgedBrie)
+                        {
+                            if (item.Name != BackstagePasses)
+                            {
+                                DecreaseQuality(item);
+                            }
+                            else
+                            {
+                                item.Quality = 0;
+                            }
+                        }
+                        else
+                        {
+                            IncreaseQuality(item);
+                        }
                     }
                 }
+            }
+        }
+
+        private static void UpdateDefaultItem(Item item)
+        {
+            if (item.Quality > 0)
+            {
+                item.Quality--;
+            }
+
+            item.SellIn--;
+
+            if (item.SellIn < 0 && item.Quality > 0)
+            {
+                item.Quality--;
             }
         }
 
