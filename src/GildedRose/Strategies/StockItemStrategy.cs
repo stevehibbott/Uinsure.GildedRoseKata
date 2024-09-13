@@ -23,7 +23,7 @@ namespace GildedRose.Strategies
         }
     }
 
-    public class AgedBrieItemStrategy : IStockItemStrategy
+    public class AgedBrieStockItemStrategy : IStockItemStrategy
     {
         private static readonly int MaxQuality = 50;
 

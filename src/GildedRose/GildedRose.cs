@@ -28,7 +28,7 @@ namespace GildedRose
                 }
                 else if (item.Name == AgedBrie)
                 {
-                    new AgedBrieItemStrategy().UpdateItem(item);
+                    new AgedBrieStockItemStrategy().UpdateItem(item);
                 }
             }
         }
