@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GildedRose.Strategies;
 
 namespace GildedRose
 {
@@ -19,7 +20,7 @@ namespace GildedRose
             {
                 if (item.Name != BackstagePasses && item.Name != Sulfuras & item.Name != AgedBrie)
                 {
-                    UpdateDefaultItem(item);
+                    new DefaultStockItemStrategy().UpdateItem(item);
                 }
                 else if (item.Name == BackstagePasses)
                 {
@@ -52,20 +53,6 @@ namespace GildedRose
             if (item.SellIn < 0)
             {
                 IncreaseQuality(item);
-            }
-        }
-        private static void UpdateDefaultItem(Item item)
-        {
-            if (item.Quality > 0)
-            {
-                item.Quality--;
-            }
-
-            item.SellIn--;
-
-            if (item.SellIn < 0 && item.Quality > 0)
-            {
-                item.Quality--;
             }
         }
 
