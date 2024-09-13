@@ -25,9 +25,23 @@ namespace GildedRose.Strategies
 
     public class AgedBrieItemStrategy : IStockItemStrategy
     {
+        private static readonly int MaxQuality = 50;
+
         public void UpdateItem(Item item)
         {
-            throw new System.NotImplementedException();
+            IncreaseQuality(item);
+            item.SellIn--;
+            if (item.SellIn < 0)
+            {
+                IncreaseQuality(item);
+            }
+        }
+        private static void IncreaseQuality(Item item)
+        {
+            if (item.Quality < MaxQuality)
+            {
+                item.Quality++;
+            }
         }
     }
 }
