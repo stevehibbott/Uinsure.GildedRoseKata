@@ -23,10 +23,8 @@ namespace GildedRose.Strategies
         }
     }
 
-    public class AgedBrieStockItemStrategy : IStockItemStrategy
+    public class AgedBrieStockItemStrategy : StockItemStrategyBase, IStockItemStrategy
     {
-        private static readonly int MaxQuality = 50;
-
         public void UpdateItem(Item item)
         {
             IncreaseQuality(item);
@@ -36,20 +34,45 @@ namespace GildedRose.Strategies
                 IncreaseQuality(item);
             }
         }
-        private static void IncreaseQuality(Item item)
+    }
+
+    public class BackstagePassStockItemStrategy : StockItemStrategyBase, IStockItemStrategy
+    {
+        private readonly int ThresholdInDaysOfFirstQualityIncrease = 11;
+        private readonly int ThresholdInDaysOfSecondQualityIncrease = 6;
+
+        public void UpdateItem(Item item)
+        {
+            IncreaseQuality(item);
+            if (item.SellIn < ThresholdInDaysOfFirstQualityIncrease)
+            {
+                IncreaseQuality(item);
+            }
+
+            if (item.SellIn < ThresholdInDaysOfSecondQualityIncrease)
+            {
+                IncreaseQuality(item);
+            }
+
+            item.SellIn--;
+
+            if (item.SellIn < 0)
+            {
+                item.Quality = 0;
+            }
+        }
+    }
+
+    public class StockItemStrategyBase
+    {
+        private static readonly int MaxQuality = 50;
+
+        protected static void IncreaseQuality(Item item)
         {
             if (item.Quality < MaxQuality)
             {
                 item.Quality++;
             }
-        }
-    }
-
-    public class BackstagePassStockItemStrategy : IStockItemStrategy
-    {
-        public void UpdateItem(Item item)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
