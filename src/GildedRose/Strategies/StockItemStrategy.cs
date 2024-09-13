@@ -22,4 +22,12 @@ namespace GildedRose.Strategies
             }
         }
     }
+
+    public class AgedBrieItemStrategy : IStockItemStrategy
+    {
+        public void UpdateItem(Item item)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

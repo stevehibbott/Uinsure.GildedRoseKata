@@ -76,13 +76,5 @@ namespace GildedRose
                 item.Quality++;
             }
         }
-
-        private static void DecreaseQuality(Item item)
-        {
-            if (item.Name != Sulfuras && item.Quality > 0)
-            {
-                item.Quality--;
-            }
-        }
     }
 }
