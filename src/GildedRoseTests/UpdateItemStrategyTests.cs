@@ -5,7 +5,7 @@ using Xunit;
 
 namespace GildedRoseTests
 {
-    public class UpdateDefaultItemTests
+    public class UpdateItemStrategyTests
     {
         [Theory]
         [InlineData(10, 5, 9, 4)]

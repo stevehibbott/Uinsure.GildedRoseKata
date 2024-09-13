@@ -1,6 +1,5 @@
-
 namespace GildedRose.Strategies
-{   
+{
     public interface IStockItemStrategy
     {
         void UpdateItem(Item item);
@@ -10,7 +9,17 @@ namespace GildedRose.Strategies
     {
         public void UpdateItem(Item item)
         {
-            throw new System.NotImplementedException();
+            if (item.Quality > 0)
+            {
+                item.Quality--;
+            }
+
+            item.SellIn--;
+
+            if (item.SellIn < 0 && item.Quality > 0)
+            {
+                item.Quality--;
+            }
         }
     }
 }
