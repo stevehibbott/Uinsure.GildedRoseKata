@@ -2,7 +2,7 @@
 
 namespace GildedRoseKata
 {
-    public class GildedRose
+    public class GildedRose(IList<Item> Items)
     {
         private const string AgedBrie = "Aged Brie";
         private const string BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
@@ -11,11 +11,7 @@ namespace GildedRoseKata
         private const int ThresholdInDaysOfFirstQualityIncrease = 11;
         private const int ThresholdInDaysOfSecondQualityIncrease = 6;
 
-        IList<Item> Items;
-        public GildedRose(IList<Item> Items)
-        {
-            this.Items = Items;
-        }
+        IList<Item> Items = Items;
 
         public void UpdateQuality()
         {
@@ -27,7 +23,7 @@ namespace GildedRoseKata
                     {
                         if (item.Name != Sulfuras)
                         {
-                            item.Quality = item.Quality - 1;
+                            item.Quality--;
                         }
                     }
                 }
@@ -35,7 +31,7 @@ namespace GildedRoseKata
                 {
                     if (item.Quality < MaxQuality)
                     {
-                        item.Quality = item.Quality + 1;
+                        item.Quality++;
 
                         if (item.Name == BackstagePasses)
                         {
@@ -43,7 +39,7 @@ namespace GildedRoseKata
                             {
                                 if (item.Quality < MaxQuality)
                                 {
-                                    item.Quality = item.Quality + 1;
+                                    item.Quality++;
                                 }
                             }
 
@@ -51,7 +47,7 @@ namespace GildedRoseKata
                             {
                                 if (item.Quality < MaxQuality)
                                 {
-                                    item.Quality = item.Quality + 1;
+                                    item.Quality++;
                                 }
                             }
                         }
@@ -60,7 +56,7 @@ namespace GildedRoseKata
 
                 if (item.Name != Sulfuras)
                 {
-                    item.SellIn = item.SellIn - 1;
+                    item.SellIn--;
                 }
 
                 if (item.SellIn < 0)
@@ -73,7 +69,7 @@ namespace GildedRoseKata
                             {
                                 if (item.Name != Sulfuras)
                                 {
-                                    item.Quality = item.Quality - 1;
+                                    item.Quality--;
                                 }
                             }
                         }
@@ -86,7 +82,7 @@ namespace GildedRoseKata
                     {
                         if (item.Quality < MaxQuality)
                         {
-                            item.Quality = item.Quality + 1;
+                            item.Quality++;
                         }
                     }
                 }
