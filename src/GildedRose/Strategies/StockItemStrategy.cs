@@ -44,4 +44,12 @@ namespace GildedRose.Strategies
             }
         }
     }
+
+    public class BackstagePassStockItemStrategy : IStockItemStrategy
+    {
+        public void UpdateItem(Item item)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

@@ -47,6 +47,30 @@ namespace GildedRoseTests
             Assert.Equal(expectedQuality, item.Quality);
             Assert.Equal(expectedSellIn, item.SellIn);
         }
+
+        [Theory]
+        [InlineData(10, 20, 11, 19)]
+        [InlineData(50, 5, 50, 4)]
+        [InlineData(10, 10, 12, 9)]
+        [InlineData(10, 5, 13, 4)]
+        [InlineData(49, 10, 50, 9)]
+        [InlineData(48, 5, 50, 4)]
+        [InlineData(48, -1, 0, -2)]
+        public void BackstagePassStockItemStrategy_UpdateItem_Returns_Expected_Results(
+            int initialQuality,
+            int initalSellIn,
+            int expectedQuality,
+            int expectedSellIn
+        )
+        {
+            //Arrange
+            var item = new Item() { Quality = initialQuality, SellIn = initalSellIn };
+            //Act
+            new BackstagePassStockItemStrategy().UpdateItem(item);
+            //Assert
+            Assert.Equal(expectedQuality, item.Quality);
+            Assert.Equal(expectedSellIn, item.SellIn);
+        }
       
     }
 }
