@@ -29,41 +29,6 @@ namespace GildedRose
                 {
                     UpdateAgedBrie(item);
                 }
-                else
-                {
-                    if (item.Name != AgedBrie && item.Name != BackstagePasses)
-                    {
-                        DecreaseQuality(item);
-                    }
-                    else
-                    {
-                        IncreaseQuality(item);
-                    }
-
-                    if (item.Name != Sulfuras)
-                    {
-                        item.SellIn--;
-                    }
-
-                    if (item.SellIn < 0)
-                    {
-                        if (item.Name != AgedBrie)
-                        {
-                            if (item.Name != BackstagePasses)
-                            {
-                                DecreaseQuality(item);
-                            }
-                            else
-                            {
-                                item.Quality = 0;
-                            }
-                        }
-                        else
-                        {
-                            IncreaseQuality(item);
-                        }
-                    }
-                }
             }
         }
 
