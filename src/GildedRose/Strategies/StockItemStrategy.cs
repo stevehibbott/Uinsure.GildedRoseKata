@@ -5,21 +5,11 @@ namespace GildedRose.Strategies
         void UpdateItem(Item item);
     }
 
-    public class DefaultStockItemStrategy : IStockItemStrategy
+    public class DefaultStockItemStrategy : StockItemStrategyBase, IStockItemStrategy
     {
         public void UpdateItem(Item item)
         {
-            if (item.Quality > 0)
-            {
-                item.Quality--;
-            }
-
-            item.SellIn--;
-
-            if (item.SellIn < 0 && item.Quality > 0)
-            {
-                item.Quality--;
-            }
+            DegradeQualityAndSellIn(item, 1);
         }
     }
 
@@ -63,21 +53,11 @@ namespace GildedRose.Strategies
         }
     }
 
-    public class ConjuredStockItemStrategy : IStockItemStrategy
+    public class ConjuredStockItemStrategy : StockItemStrategyBase, IStockItemStrategy
     {
         public void UpdateItem(Item item)
         {
-            if (item.Quality > 0)
-            {
-                item.Quality -= 2;
-            }
-
-            item.SellIn--;
-
-            if (item.SellIn < 0 && item.Quality > 0)
-            {
-                item.Quality -= 2;
-            }
+            DegradeQualityAndSellIn(item, 2);
         }
     }
 
@@ -90,6 +70,21 @@ namespace GildedRose.Strategies
             if (item.Quality < MaxQuality)
             {
                 item.Quality++;
+            }
+        }
+
+        protected static void DegradeQualityAndSellIn(Item item, int qualityDegregationRate)
+        {
+            if (item.Quality > 0)
+            {
+                item.Quality -= qualityDegregationRate;
+            }
+
+            item.SellIn--;
+
+            if (item.SellIn < 0 && item.Quality > 0)
+            {
+                item.Quality -= qualityDegregationRate;
             }
         }
     }
