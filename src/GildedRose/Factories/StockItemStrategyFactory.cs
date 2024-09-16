@@ -12,32 +12,14 @@ namespace GildedRose.Factories
     {
         public IStockItemStrategy Create(string itemName)
         {
-            if (itemName == Constants.Conjured)
+            return itemName switch
             {
-                return new ConjuredStockItemStrategy();
-            }
-            else if (itemName == Constants.Sulfuras)
-            {
-                return new SulfurasStockItemStrategy();
-            }
-            else if (
-                itemName != Constants.BackstagePasses
-                && itemName != Constants.Sulfuras
-                && itemName != Constants.AgedBrie
-            )
-            {
-                return new DefaultStockItemStrategy();
-            }
-            else if (itemName == Constants.BackstagePasses)
-            {
-                return new BackstagePassStockItemStrategy();
-            }
-            else if (itemName == Constants.AgedBrie)
-            {
-                return new AgedBrieStockItemStrategy();
-            }
-
-            return new DefaultStockItemStrategy();
+                Constants.Conjured => new ConjuredStockItemStrategy(),
+                Constants.Sulfuras => new SulfurasStockItemStrategy(),
+                Constants.BackstagePasses => new BackstagePassStockItemStrategy(),
+                Constants.AgedBrie => new AgedBrieStockItemStrategy(),
+                _ => new DefaultStockItemStrategy(),
+            };
         }
     }
 }

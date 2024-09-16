@@ -56,19 +56,18 @@ namespace GildedRose
 				new() {Name = "Conjured Mana Cake", SellIn = 3, Quality = 16}
             };
 
-            var factory =  new StockItemStrategyFactory();
+            var factory = new StockItemStrategyFactory();
 
             for (var i = 0; i < 31; i++)
             {
                 Console.WriteLine("-------- day " + i + " --------");
                 Console.WriteLine("name, sellIn, quality");
-                for (var j = 0; j < Items.Count; j++)
+                foreach (var item in Items)
                 {
-                    Console.WriteLine(Items[j].Name + ", " + Items[j].SellIn + ", " + Items[j].Quality);
-                    factory.Create(Items[j].Name).UpdateItem(Items[j]);
+                    Console.WriteLine($"{item.Name}, {item.SellIn}, {item.Quality}");
+                    factory.Create(item.Name).UpdateItem(item);
                 }
                 Console.WriteLine("");
-
             }
         }
     }
