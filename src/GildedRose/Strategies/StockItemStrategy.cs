@@ -60,7 +60,10 @@ namespace GildedRose.Strategies
             DegradeQualityAndSellIn(item, 2);
         }
     }
-
+    public class SulfurasStockItemStrategy : IStockItemStrategy
+    {
+        public void UpdateItem(Item item){}
+    }
     public abstract class StockItemStrategyBase
     {
         private static readonly int MaxQuality = 50;
