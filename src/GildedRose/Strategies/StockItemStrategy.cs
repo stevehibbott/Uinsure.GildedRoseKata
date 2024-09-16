@@ -67,7 +67,17 @@ namespace GildedRose.Strategies
     {
         public void UpdateItem(Item item)
         {
-            throw new System.NotImplementedException();
+            if (item.Quality > 0)
+            {
+                item.Quality -= 2;
+            }
+
+            item.SellIn--;
+
+            if (item.SellIn < 0 && item.Quality > 0)
+            {
+                item.Quality -= 2;
+            }
         }
     }
 

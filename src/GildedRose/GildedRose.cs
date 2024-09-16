@@ -8,13 +8,18 @@ namespace GildedRose
         private const string AgedBrie = "Aged Brie";
         private const string BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
         private const string Sulfuras = "Sulfuras, Hand of Ragnaros";
+        private const string Conjured = "Conjured Mana Cake";
         IList<Item> Items = Items;
 
         public void UpdateQuality()
         {
             foreach (var item in Items)
             {
-                if (item.Name != BackstagePasses && item.Name != Sulfuras & item.Name != AgedBrie)
+                if (item.Name == Conjured)
+                {
+                    new ConjuredStockItemStrategy().UpdateItem(item);
+                }
+                else if (item.Name != BackstagePasses && item.Name != Sulfuras & item.Name != AgedBrie)
                 {
                     new DefaultStockItemStrategy().UpdateItem(item);
                 }
