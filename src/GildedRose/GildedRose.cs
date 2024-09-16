@@ -19,7 +19,7 @@ namespace GildedRose
                 {
                     new ConjuredStockItemStrategy().UpdateItem(item);
                 }
-                else if (item.Name != BackstagePasses && item.Name != Sulfuras & item.Name != AgedBrie)
+                else if (item.Name != BackstagePasses && item.Name != Sulfuras && item.Name != AgedBrie)
                 {
                     new DefaultStockItemStrategy().UpdateItem(item);
                 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using GildedRose;
+﻿using GildedRose;
 using GildedRose.Strategies;
 using Xunit;
 
