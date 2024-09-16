@@ -71,7 +71,6 @@ namespace GildedRoseTests
             Assert.Equal(expectedSellIn, item.SellIn);
         }
 
-
         [Theory]
         [InlineData(10, 5, 8, 4)]
         [InlineData(0, 5, 0, 4)]
@@ -92,10 +91,24 @@ namespace GildedRoseTests
             Assert.Equal(expectedSellIn, item.SellIn);
         }
 
-
-
-      
+        [Theory]
+        [InlineData(80, 1, 80, 1)]
+        [InlineData(80, 0, 80, 0)]
+        [InlineData(80, -1, 80, -1)]
+        public void SulfurasStockItemStrategy_UpdateItem_Returns_Expected_Results(
+            int initialQuality,
+            int initalSellIn,
+            int expectedQuality,
+            int expectedSellIn
+        )
+        {
+            //Arrange
+            var item = new Item() { Quality = initialQuality, SellIn = initalSellIn };
+            //Act
+            new SulfurasStockItemStrategy().UpdateItem(item);
+            //Assert
+            Assert.Equal(expectedQuality, item.Quality);
+            Assert.Equal(expectedSellIn, item.SellIn);
+        }
     }
-
-
 }
