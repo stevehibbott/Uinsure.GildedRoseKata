@@ -63,7 +63,15 @@ namespace GildedRose.Strategies
         }
     }
 
-    public class StockItemStrategyBase
+    public class ConjuredStockItemStrategy : IStockItemStrategy
+    {
+        public void UpdateItem(Item item)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+
+    public abstract class StockItemStrategyBase
     {
         private static readonly int MaxQuality = 50;
 
