@@ -5,29 +5,25 @@ namespace GildedRose
 {
     public class GildedRose(IList<Item> Items)
     {
-        private const string AgedBrie = "Aged Brie";
-        private const string BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
-        private const string Sulfuras = "Sulfuras, Hand of Ragnaros";
-        private const string Conjured = "Conjured Mana Cake";
         IList<Item> Items = Items;
 
         public void UpdateQuality()
         {
             foreach (var item in Items)
             {
-                if (item.Name == Conjured)
+                if (item.Name == Constants.Conjured)
                 {
                     new ConjuredStockItemStrategy().UpdateItem(item);
                 }
-                else if (item.Name != BackstagePasses && item.Name != Sulfuras && item.Name != AgedBrie)
+                else if (item.Name != Constants.BackstagePasses && item.Name != Constants.Sulfuras && item.Name != Constants.AgedBrie)
                 {
                     new DefaultStockItemStrategy().UpdateItem(item);
                 }
-                else if (item.Name == BackstagePasses)
+                else if (item.Name == Constants.BackstagePasses)
                 {
                      new BackstagePassStockItemStrategy().UpdateItem(item);
                 }
-                else if (item.Name == AgedBrie)
+                else if (item.Name == Constants.AgedBrie)
                 {
                     new AgedBrieStockItemStrategy().UpdateItem(item);
                 }
